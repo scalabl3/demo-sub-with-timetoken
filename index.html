@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscribe with Timetoken</title>
+
+    <!-- Demo Only -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+
+    <!-- PubNub Library -->
+    <script src="https://cdn.pubnub.com/pubnub-3.14.5.min.js"></script>
+    <script src="demo.js"></script>
+
+    <!-- Demo CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Condensed|Source+Sans+Pro|Palanquin' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-uSbimwRPo7PKyTL6azsx1CcBce/X9Qg+wX1MAjNV1gAkSXYveZbZeMMyJghdsSol" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/darkula.min.css" rel="stylesheet" >
+
+    <link href="demo.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <div id="buttons">
+            <h4>Make Subscribe REST call</h4>
+            <button id="btn-5" data-time="5" class="btn btn-default">5 Seconds</button><br />
+            <button id="btn-10" data-time="10" class="btn btn-default">10 Seconds</button><br />
+            <button id="btn-15" data-time="15" class="btn btn-default">15 Seconds</button><br />
+            <button id="btn-30" data-time="30" class="btn btn-default">30 Seconds</button><br />
+        </div>
+        <div id="results">
+            <h4>Results</h4>
+            <div id="stats">
+                <table>
+                    <tr>
+                        <td>Current Epoch</td>
+                        <td align="right"><span id="now">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Epoch -> PN Timetoken</td>
+                        <td align="right"><span id="pn-tt">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>PN Timetoken</td>
+                        <td align="right"><span id="pn-t">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Difference</td>
+                        <td align="right"><span id="tt-delta">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Subscribe Time</td>
+                        <td align="right"><span id="sub-ep">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Subscribe Timetoken</td>
+                        <td align="right"><span id="sub-tt">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Subscribe Result Count</td>
+                        <td align="right"><span id="sub-cnt">0</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="messages-outer"><pre><code id="#messages"></code></pre></div>
+        </div>
+
+    </div>
+</body>
+</html>
