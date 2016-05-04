@@ -37,7 +37,7 @@
 <body>
     <div>
         <div id="buttons">
-            <h4>Make Subscribe REST call</h4>
+            <h5>Subscribe REST with Older Timetoken</h5>
             <button id="btn-1" data-time="1" class="btn btn-default btn-sm">1 Second</button><br />
             <button id="btn-2" data-time="2" class="btn btn-default btn-sm">2 Seconds</button><br />
             <button id="btn-3" data-time="3" class="btn btn-default btn-sm">3 Seconds</button><br />
@@ -48,7 +48,7 @@
             <button id="btn-30" data-time="30" class="btn btn-default btn-sm">30 Seconds</button><br />
         </div>
         <div id="results">
-            <h4>Results</h4>
+            <h5>Results</h5>
             <div id="stats">
                 <table>
                     <tr>
@@ -67,12 +67,13 @@
                         <td>Time Drift/Delta</td>
                         <td align="right"><span id="tt-delta">0</span></td>
                     </tr>
+                    <tr><td style="font-size: 5px;">&nbsp;</td></tr>
                     <tr>
-                        <td>Subscribe Time</td>
+                        <td>Subscribe Epoch</td>
                         <td align="right"><span id="sub-ep">0</span></td>
                     </tr>
                     <tr>
-                        <td>Subscribe Timetoken</td>
+                        <td>Subscribe PN Timetoken</td>
                         <td align="right"><span id="sub-tt">0</span></td>
                     </tr>
                     <tr>
@@ -81,6 +82,7 @@
                     </tr>
                 </table>
             </div>
+            <h5>Messages Returned</h5>
             <div id="messages"></div>
         </div>
 

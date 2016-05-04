@@ -22,4 +22,12 @@ pre, code {
   font-family: droid sans mono, menlo, consolas, monospace, courier new, courier, sans-serif;
   font-size: 11px; }
 
+h5 {
+  color: cornflowerblue; }
+
+td {
+  color: #ccc; }
+  td span {
+    color: #ccc; }
+
 /*# sourceMappingURL=demo.css.map */
