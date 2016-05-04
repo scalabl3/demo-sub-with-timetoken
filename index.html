@@ -20,15 +20,32 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/darkula.min.css" rel="stylesheet" >
 
     <link href="demo.css" rel="stylesheet">
+
+    <script>
+        function highlight(block) {
+            hljs.highlightBlock(block);
+        }
+
+        function highlight_all(){
+            $('#messages pre code.unformatted').each(function(i, block) {
+                $(this).removeClass("unformatted");
+                highlight(block);
+            });
+        }
+    </script>
 </head>
 <body>
     <div>
         <div id="buttons">
             <h4>Make Subscribe REST call</h4>
-            <button id="btn-5" data-time="5" class="btn btn-default">5 Seconds</button><br />
-            <button id="btn-10" data-time="10" class="btn btn-default">10 Seconds</button><br />
-            <button id="btn-15" data-time="15" class="btn btn-default">15 Seconds</button><br />
-            <button id="btn-30" data-time="30" class="btn btn-default">30 Seconds</button><br />
+            <button id="btn-1" data-time="1" class="btn btn-default btn-sm">1 Second</button><br />
+            <button id="btn-2" data-time="2" class="btn btn-default btn-sm">2 Seconds</button><br />
+            <button id="btn-3" data-time="3" class="btn btn-default btn-sm">3 Seconds</button><br />
+            <button id="btn-4" data-time="4" class="btn btn-default btn-sm">4 Seconds</button><br />
+            <button id="btn-5" data-time="5" class="btn btn-default btn-sm">5 Seconds</button><br />
+            <button id="btn-10" data-time="10" class="btn btn-default btn-sm">10 Seconds</button><br />
+            <button id="btn-15" data-time="15" class="btn btn-default btn-sm">15 Seconds</button><br />
+            <button id="btn-30" data-time="30" class="btn btn-default btn-sm">30 Seconds</button><br />
         </div>
         <div id="results">
             <h4>Results</h4>
@@ -64,7 +81,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="messages-outer"><pre><code id="#messages"></code></pre></div>
+            <div id="messages"></div>
         </div>
 
     </div>

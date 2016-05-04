@@ -31,7 +31,7 @@ function make_url(timetoken) {
 
     var querystring = [];
 
-    var url = (params.state.tls ? "https://" : "http://");
+    var url = (params.state.tls ? "https:" : "http:");
 
     url += "//" + params.state.origin;
     url += "/subscribe";
@@ -60,8 +60,19 @@ function make_url(timetoken) {
 }
 
 function display_messages(m) {
-    console.log(m);
-    $("#messages").text(JSON.stringify(m, null, " "));
+    console.log([m[0]]);
+
+    var txt = "";
+
+    $("#sub-cnt").text(m[0].length);
+
+    m[0].forEach(function(msg){
+        txt += JSON.stringify(msg, null, " ") + "\n\n";
+    });
+
+    $("#messages").html('<pre><code class="unformatted json">' + txt + '</code></pre>');
+
+    highlight_all();
 }
 
 function subscribe_rest(seconds_ago) {
@@ -70,7 +81,7 @@ function subscribe_rest(seconds_ago) {
     var s = seconds_ago + Math.floor(params.state.drift / 1000);
     var tt = epoch_to_pn(now, s);
 
-    console.log(now, seconds_ago, Math.floor(params.state.drift / 1000), s, tt);
+    //console.log(now, seconds_ago, Math.floor(params.state.drift / 1000), s, tt);
 
     $("#sub-ep").text(now);
     $("#sub-tt").text(tt);
@@ -78,10 +89,11 @@ function subscribe_rest(seconds_ago) {
 
     var url = make_url(tt);
     console.log(url);
+
     $.ajax({
         cache: false,
         success: function (data, status) {
-            console.log(status);
+            //console.log(status);
             display_messages(data);
         },
         contentType: "text/plain",
@@ -93,7 +105,7 @@ function subscribe_rest(seconds_ago) {
 
 function epoch_to_pn(epoch, subtract_seconds) {
     subtract_seconds = (subtract_seconds ? subtract_seconds : 0);
-    return (epoch - subtract_seconds) * 10000;
+    return (epoch - (subtract_seconds * 1000)) * 10000;
 }
 
 function pn_to_epoch(pn) {
@@ -101,7 +113,7 @@ function pn_to_epoch(pn) {
     return (pn / 10000);
 }
 
-function get_time() {
+function get_time(cb) {
     $.getJSON("http://pubsub.pubnub.com/time/0", null, function(d){
 
         var pn = d[0];
@@ -115,20 +127,22 @@ function get_time() {
 
         $("#tt-delta").text( (params.state.drift > 0 ? "+" : "-" ) + params.state.drift + " ms");
 
+        cb();
     });
 }
 
 $(function() {
-    get_time();
-    // setInterval(function(){
-    //     get_time();
-    // }, 2000);
+    get_time(function(){
+
+    });
 
     $("#buttons button").each(function(){
         var b = $(this);
         b.click(function(){
             var seconds = parseInt(b.attr("data-time"));
-            subscribe_rest(seconds);
+            get_time(function(){
+                subscribe_rest(seconds);
+            });
         });
     });
 });
